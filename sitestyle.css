@@ -1,0 +1,221 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'kleeone';
+  src: url('https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/kleeone.ttf?v=1728624644168') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+textarea,
+body,
+button,
+input,
+select {
+  font-family: 'kleeone', sans-serif;
+}
+
+button,
+input,
+select {
+  padding: 5px; /* 隙間 */
+  display: inline-block; /* インラインボックスの様に前後で改行されずにブロックボックスの様に高さ・横幅を指定可能な要素として表示させる */
+  background: #CCFFCC; /* 背景色 */
+  color: #000000; /* 文字色 */
+  border-radius: 5px; /* 角丸にする */
+  text-decoration: none; /* 文字をデコレーションしない */
+  line-height: 1;
+  accent-color: #FFFF99;
+  transition:0.4s;
+}
+button:hover,
+input:hover,
+select:hover {
+  transform: translateY(-2px); /* ホバー時に少し浮かせる */
+}
+header {
+  background-color: #008080; /* 背景色 */
+  color: #FFFFFF; /* 文字色 */
+  position: relative; /* 相対位置を指定 */
+  padding: 10px 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* ビューポートの高さに応じて最小の高さを設定 */
+  display: flex;
+  flex-direction: column; /* 子要素を縦に並べる */
+  background-position: center center;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  background-size: cover; /* 背景色 */
+}
+
+.content {
+  flex: 1; /* フッターがページの一番下に固定されるように、フレックスアイテムとして残りのスペースを埋める */
+}
+html {
+  max-width: 100vw;
+  overflow-x: hidden; /* 横スクロールの無効化 */
+}
+
+.footer {
+  background-color: #000080;
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+  position: relative; /* 相対位置を指定 */
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  height: 5px; /* グラデーションの線の高さ */
+  background: linear-gradient(to right, #0000CD, #00F9A9); /* グラデーションの色 */
+  position: absolute;
+  top: 0; /* フッターの上に配置 */
+  left: 0;
+  right: 0; /* 幅を100%に */
+}
+
+.cw {
+  color: #FFFFFF;
+}
+
+.cbu {
+  color: #0000CD;
+  background-color: #00F9A9;
+}
+
+a {
+  text-decoration: none;
+}
+
+.indexitem:hover {
+  transform: scale(1.1);
+}
+
+@media print {
+  header,
+  .menubar,
+  .settings,
+  footer {
+    display: none;
+  }
+  
+  .changed {
+    background-color: #ffff99;
+  }
+}
+
+/* ダイアログのスタイル */
+dialog {
+  padding: 16px;
+  background-color: #fff;
+  border: none;
+  border-radius: 16px 16px 16px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* レスポンシブデザイン */
+@media only screen and (max-width: 650px) {
+  /* ヘッダー */
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* コンテンツ */
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+  }
+}
+hr {
+  border: none; /* デフォルトの境界線を削除 */
+  height: 2px; /* 線の高さを細く */
+  background: linear-gradient(to right, SlateBlue, purple); /* グラデーションの色 */
+  margin: 20px 0; /* 上下のマージン */
+}
+
+@media (max-width: 600px) {
+  .menubar a {
+    font-size: 12px; /* 小さい画面向けにさらに調整 */
+  }
+}
+
+/* コンテンツ部分の調整 */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.gset {
+  width: 100%; /* スマホでは100%幅 */
+  max-width: 400px; /* 大きなデバイスでの最大幅 */
+  margin: 10px;
+}
+
+.controls button, .settings input {
+  width: 100%; /* 入力フィールドやボタンの幅を100%に */
+}
+
+.graph {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .gset {
+    width: 100%; /* スマホでは全幅を取る */
+    margin: 5px;
+  }
+}
+
+/* グラフのキャンバス調整 */
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+h2 {
+  font-size: 20px; /* 通常のフォントサイズ */
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 16px; /* 小さい画面向けにフォントを調整 */
+  }
+}
+
+
+@media (max-width: 600px) {
+  header img {
+    max-width: 80px;
+  }
+}
+
+/* タイトルの調整 */
+h2 {
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .gset {
+    width: 100%; /* スマホで全幅 */
+    margin: 5px 0;
+  }
+
+  .controls button,
+  .settings input {
+    width: 100%; /* ボタンや入力フィールドの幅調整 */
+  }
+}

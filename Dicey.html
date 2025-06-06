@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dicey | ピポの便利な缶詰め</title>
+    <link rel="stylesheet" href="menubar.css" />
+    <link id="theme-style" rel="stylesheet" href="sitestyle.css" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/psk.png?v=1728624294698"
+    />
+    <script src="menubar.js"></script>
+    <meta name="keywords" content="ピポの便利な缶詰, ピポの便利な缶詰め" />
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="index.html">ホーム</a>
+      <a href="Diffy.html">Diffy</a>
+      <a href="Voico.html">Voico</a>
+      <a href="HueBox.html">HueBox</a>
+      <a href="Dicey.html">Dicey</a>
+    </div>
+    <header>
+      <div style="display: flex">
+        <h2>
+          <a
+            class="backlink"
+            style="color: #ffffff; text-decoration: none"
+            href="index.html"
+            >〈戻る</a
+          >&nbsp;
+          <img
+            src="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/dicey.png?v=1728624717064"
+            alt="Diceyのアイコン"
+            width="36px"
+            height="36px"
+          />Dicey
+        </h2>
+        <img
+          style="margin-left: auto; align-items: center"
+          src="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/logo.png?v=1728624482047"
+          alt="ピポ会社のロゴ"
+          width="190px"
+          height="50px"
+          onclick="window.location.href = 'http://pipocorp.glitch.me/index.html';"
+        />
+      </div>
+      <p>ここでは、乱数を生成できます。</p>
+      <hr />
+      <h3 id="time"></h3>
+    </header>
+    <div class="content">
+      <label for="min">最小値:</label>
+      <input type="number" id="min" value="1" style="width: 150px" />
+      <br />
+      <br />
+      <label for="max">最大値:</label>
+      <input type="number" id="max" value="50" style="width: 150px" />
+      <br />
+      <br />
+      <label for="count">生成数:</label>
+      <input type="number" id="count" value="5" style="width: 150px" />
+      <br />
+      <br />
+      <div style="display: flex">
+        <p>
+          同じ数を出さない:
+          <input type="checkbox" id="unique" />
+        </p>
+      </div>
+      <br />
+      <br />
+      <button onclick="generateRandomNumbers()" style="width: 150px">
+        生成
+      </button>
+      <br />
+      <br />
+      <h2>生成された乱数:</h2>
+      <p id="result"></p>
+      <script>
+        function generateRandomNumbers() {
+          const min = parseInt(document.getElementById("min").value);
+          const max = parseInt(document.getElementById("max").value);
+          const count = parseInt(document.getElementById("count").value);
+          const unique = document.getElementById("unique").checked;
+
+          if (min >= max || count <= 0 || (unique && count > max - min + 1)) {
+            document.getElementById("result").textContent =
+              "入力値にエラーがあります。";
+            return;
+          }
+
+          const numbers = [];
+
+          while (numbers.length < count) {
+            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            if (!unique || !numbers.includes(num)) {
+              numbers.push(num);
+            }
+          }
+
+          document.getElementById("result").textContent = numbers.join(", ");
+        }
+      </script>
+    </div>
+    <!-- フッター -->
+    <footer class="footer">
+      <p>copyright©pipo corporation 2024 all rights reserved.</p>
+    </footer>
+  </body>
+</html>

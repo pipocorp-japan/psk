@@ -1,0 +1,31 @@
+.menubar {
+  background-color: #001f3f;
+  display: flex;
+  justify-content: space-between; /* コンテンツを左右に分散 */
+  padding: 0.5em 1.5em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  white-space: nowrap; /* テキストの折り返しを無効化 */
+  overflow-x: auto; /* 横スクロールを許可 */
+}
+
+.menubar a {
+  color: #ffffff;
+  padding: 0.5em 1em; /* パディングを少し調整してみる */
+  text-decoration: none;
+  border-radius:3px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* アニメーション追加 */
+  white-space: nowrap; /* リンクのテキストも折り返し無効 */
+}
+
+.menubar a:hover {
+  background-color: #007bff;
+  border-radius:3px;
+  color:#001f3f;
+  transform: translateY(-2px); /* ホバー時に少し浮かせる */
+}
+
+.menubar a.active {
+  background-color: #ffffff;
+  border-radius:3px;
+  color: #001f3f;
+}

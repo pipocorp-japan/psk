@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voico | ピポの便利機能缶詰</title>
+    <link id="theme-style" rel="stylesheet" href="menubar.css" />
+    <link rel="stylesheet" href="sitestyle.css" />
+    <script src="menubar.js"></script>
+    <script>
+      let voices = [];
+      let selectedVoice = null;
+
+      function populateVoiceList() {
+        voices = speechSynthesis.getVoices();
+        const voiceSelect = document.getElementById("voiceSelect");
+        voiceSelect.innerHTML = ""; // Clear the previous options
+        voices.forEach((voice, index) => {
+          const option = document.createElement("option");
+          option.value = index;
+          option.textContent = `${voice.name} (${voice.lang})`;
+          voiceSelect.appendChild(option);
+        });
+        // Set the default voice if available
+        if (voices.length > 0) {
+          updateVoice();
+        }
+      }
+
+      function speakText() {
+        const text = document.getElementById("inputText").value;
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+        }
+        speechSynthesis.speak(utterance);
+      }
+
+      function updateVoice() {
+        const voiceSelect = document.getElementById("voiceSelect");
+        const selectedIndex = voiceSelect.value;
+        selectedVoice = voices[selectedIndex];
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        populateVoiceList();
+        speechSynthesis.onvoiceschanged = populateVoiceList; // Update voice list when available
+      });
+    </script>
+    <style>
+      #inputText {
+        width: 98.5%;
+        height: 200px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+      .language-selector {
+        margin-left: 20px;
+      }
+    </style>
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/psk.png?v=1728624294698"
+    />
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="index.html">ホーム</a>
+      <a href="Diffy.html">Diffy</a>
+      <a href="Voico.html">Voico</a>
+      <a href="HueBox.html">HueBox</a>
+      <a href="Dicey.html">Dicey</a>
+    </div>
+    <header>
+      <div style="display: flex; align-items: center">
+        <h2>
+          <a
+            class="backlink"
+            style="color: #ffffff; text-decoration: none"
+            href="index.html"
+            >〈戻る</a
+          >&nbsp;
+          <img
+            src="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/voico.png?v=1728625070800"
+            alt="Voicoのアイコン"
+            width="36px"
+            height="36px"
+          />Voico
+        </h2>
+        <img
+          src="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/logo.png?v=1728624482047"
+          alt="ピポ会社のロゴ"
+          width="190px"
+          height="50px"
+          style="margin-left: auto"
+          onclick="window.location.href = 'http://pipocorp.glitch.me/index.html';"
+        />
+      </div>
+      <p>ここでは、文章を音読させることができます。</p>
+      <hr />
+      <h3 id="time"></h3>
+    </header>
+    <div class="content">
+      <select
+        id="voiceSelect"
+        class="language-selector"
+        onchange="updateVoice()"
+      >
+        <!-- 音声オプションがここに追加されます -->
+      </select>
+      <textarea
+        id="inputText"
+        placeholder="音読させるテキストを入力"
+        rows="10"
+      ></textarea>
+      <br />
+      <button onclick="speakText()">音読する</button>
+    </div>
+    <footer class="footer" style="background-color: #000080">
+      <p>copyright©pipo corporation 2024 all rights reserved.</p>
+    </footer>
+  </body>
+</html>
